@@ -26,6 +26,9 @@ class PostsItemAdapter : RecyclerView.Adapter<PostsItemAdapter.ItemHolder>() {
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         holder.itemView.authorName.text = dataPost?.posts?.get(position)?.title ?: ""
         holder.itemView.postContent.text = dataPost?.post_briefs?.get(position) ?: ""
+        if (onItemClickListener != null) {
+            holder.itemView.setOnClickListener { view -> onItemClickListener!!.onItemClick(view, position) }
+        }
     }
 
     fun setData(data: PostBean) {

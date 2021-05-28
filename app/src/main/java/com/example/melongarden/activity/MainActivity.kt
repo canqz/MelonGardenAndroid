@@ -1,9 +1,13 @@
-package com.example.melongarden
+package com.example.melongarden.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.melongarden.Helper
+import com.example.melongarden.R
 import com.example.melongarden.adapter.PostsItemAdapter
 import com.example.melongarden.bean.PostBean
 import com.example.melongarden.service.NetHelper
@@ -32,6 +36,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initRecycleView() {
+        adapter.setOnItemClickListener(object : PostsItemAdapter.OnItemClickListener {
+            override fun onItemClick(view: View, position: Int) {
+                val intent = Intent(this@MainActivity, CommentActivity::class.java)
+                intent.putExtra(Helper.POST_ID, dataBean?.posts?.get(position)?.id.toString())
+                startActivity(intent)
+            }
+        })
         postsRecycleView.adapter = adapter
         postsRecycleView.layoutManager = LinearLayoutManager(this)
     }
