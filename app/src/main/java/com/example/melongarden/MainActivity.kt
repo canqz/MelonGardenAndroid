@@ -25,12 +25,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         initData()
         initRecycleView()
-        setData()
     }
 
     private fun setData() {
         dataBean?.apply {
-            adapter.setData(this.posts)
+            adapter.setData(this)
         }
         adapter.notifyDataSetChanged()
     }
@@ -59,14 +58,13 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onSubscribe(d: Disposable) {
                 }
-
                 override fun onNext(t: PostBean) {
                     dataBean = t
-                    Log.i("lwt", "hello ${dataBean?.total_posts}")
+                    setData()
                 }
 
                 override fun onError(e: Throwable) {
-                    Log.i("lwt", "报错$e")
+                    Log.i("lwt", e.toString())
                 }
 
             })
