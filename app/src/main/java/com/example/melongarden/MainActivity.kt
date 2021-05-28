@@ -6,15 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.melongarden.adapter.PostsItemAdapter
 import com.example.melongarden.bean.PostBean
-import com.example.melongarden.service.PostService
+import com.example.melongarden.service.NetHelper
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
     private var dataBean: PostBean? = null
@@ -40,15 +37,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initData() {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://81.68.104.78:8082/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .build()
 
-        val request = retrofit.create(PostService::class.java)
-
-        val observable = request.getPosts()
+        val observable = NetHelper.getRequest().getPosts()
 
         observable.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -58,6 +48,7 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onSubscribe(d: Disposable) {
                 }
+
                 override fun onNext(t: PostBean) {
                     dataBean = t
                     setData()
@@ -68,5 +59,6 @@ class MainActivity : AppCompatActivity() {
                 }
 
             })
+
     }
 }

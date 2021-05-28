@@ -10,7 +10,8 @@ import kotlinx.android.synthetic.main.post_item_binder_layout.view.*
 
 class PostsItemAdapter : RecyclerView.Adapter<PostsItemAdapter.ItemHolder>() {
 
-    private var dataPost: PostBean?= null
+    private var dataPost: PostBean? = null
+    private var onItemClickListener: OnItemClickListener? = null
 
     class ItemHolder(view: View) : RecyclerView.ViewHolder(view)
 
@@ -29,5 +30,13 @@ class PostsItemAdapter : RecyclerView.Adapter<PostsItemAdapter.ItemHolder>() {
 
     fun setData(data: PostBean) {
         this.dataPost = data
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(view: View, position: Int)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.onItemClickListener = listener
     }
 }
