@@ -5,12 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.melongarden.R
-import com.example.melongarden.bean.PostBean
+import com.example.melongarden.bean.Post
 import kotlinx.android.synthetic.main.post_item_binder_layout.view.*
 
 class PostsItemAdapter : RecyclerView.Adapter<PostsItemAdapter.ItemHolder>() {
 
-    private var data = arrayListOf<PostBean>()
+    private var data = arrayListOf<Post>()
 
     class ItemHolder(view: View) : RecyclerView.ViewHolder(view)
 
@@ -23,10 +23,10 @@ class PostsItemAdapter : RecyclerView.Adapter<PostsItemAdapter.ItemHolder>() {
     override fun getItemCount(): Int = data.size
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        holder.itemView.authorName.text = data[position].name
+        holder.itemView.authorName.text = data[position].title
     }
 
-    fun setData(data: ArrayList<PostBean>) {
+    fun setData(data: ArrayList<Post>) {
         this.data = data
     }
 
