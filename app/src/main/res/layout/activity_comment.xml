@@ -5,13 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".activity.CommentActivity">
 
-    <TextView
-        android:id="@+id/postId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/comment_item_background"
-        android:gravity="center"
-        android:textSize="30sp" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/commentRecycleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
 </LinearLayout>
