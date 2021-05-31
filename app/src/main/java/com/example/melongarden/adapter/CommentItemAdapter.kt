@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.melongarden.R
 import com.example.melongarden.bean.CommentBean
 import kotlinx.android.synthetic.main.comment_item_binder_layout.view.*
+import org.jsoup.Jsoup
 
 class CommentItemAdapter : RecyclerView.Adapter<CommentItemAdapter.ItemHolder>() {
 
@@ -21,8 +22,9 @@ class CommentItemAdapter : RecyclerView.Adapter<CommentItemAdapter.ItemHolder>()
     }
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        holder.itemView.contentTv.text = commentBean?.comments?.get(position)?.content ?: "Hello"
-        holder.itemView.userId.text = commentBean?.comments?.get(position)?.user_id ?: "lwt"
+        val text = commentBean?.comments?.get(position)?.content ?: "Hello"
+        holder.itemView.userId.text  = commentBean?.comments?.get(position)?.user_id ?: ""
+        holder.itemView.contentTv.text = Jsoup.parse(text).text()
     }
 
     override fun getItemCount(): Int = commentBean?.comments?.size ?: 0
