@@ -24,10 +24,16 @@ class PostsItemAdapter : RecyclerView.Adapter<PostsItemAdapter.ItemHolder>() {
     override fun getItemCount(): Int = dataPost?.posts?.size ?: 0
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        holder.itemView.authorName.text = dataPost?.posts?.get(position)?.title ?: ""
+        holder.itemView.title.text = dataPost?.posts?.get(position)?.title ?: ""
         holder.itemView.postContent.text = dataPost?.post_briefs?.get(position) ?: ""
+        holder.itemView.authorName.text = dataPost?.posts?.get(position)?.user_id ?: ""
         if (onItemClickListener != null) {
-            holder.itemView.setOnClickListener { view -> onItemClickListener!!.onItemClick(view, position) }
+            holder.itemView.setOnClickListener { view ->
+                onItemClickListener!!.onItemClick(
+                    view,
+                    position
+                )
+            }
         }
     }
 

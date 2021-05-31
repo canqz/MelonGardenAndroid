@@ -2,32 +2,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/post_item_background"
     android:layout_margin="10dp"
-    android:padding="10dp"
-    android:orientation="vertical">
+    android:background="@drawable/post_item_background"
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <LinearLayout
         android:id="@+id/authorLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/authorName"
-            android:textColor="@color/black"
-            android:maxLines="1"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:textSize="30sp" />
+            android:gravity="end"
+            android:maxLines="1"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
     <TextView
-        android:layout_marginTop="10dp"
         android:id="@+id/postContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:maxLines="3" />
+        android:layout_marginTop="10dp"
+
+        android:maxLines="3"
+        android:textSize="20sp" />
 
 </LinearLayout>
