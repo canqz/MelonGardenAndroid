@@ -22,11 +22,12 @@ class CommentItemAdapter : RecyclerView.Adapter<CommentItemAdapter.ItemHolder>()
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         holder.itemView.contentTv.text = commentBean?.comments?.get(position)?.content ?: "Hello"
+        holder.itemView.userId.text = commentBean?.comments?.get(position)?.user_id ?: "lwt"
     }
 
     override fun getItemCount(): Int = commentBean?.comments?.size ?: 0
 
-    fun setData(commentBean:CommentBean){
+    fun setData(commentBean: CommentBean) {
         this.commentBean = commentBean
     }
 }
