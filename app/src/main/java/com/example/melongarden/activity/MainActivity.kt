@@ -68,7 +68,6 @@ class MainActivity : AppCompatActivity() {
                 override fun onError(e: Throwable) {
                     Log.i("lwt", e.toString())
                 }
-
             })
 
     }

@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">MelonGarden</string>
     <string name="welcome_to_melongarden">welcome to MelonGarden</string>
+    <string name="id">id</string>
+    <string name="password">password</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_in">Sign in</string>
 </resources>
