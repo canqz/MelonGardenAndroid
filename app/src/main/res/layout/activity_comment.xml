@@ -3,13 +3,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.CommentActivity">
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/commentRecycleView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/commentRecycleView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/commentPostText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:hint="@string/post_a_comment"
+            android:paddingStart="20dp"
+            android:paddingLeft="20dp" />
+
+        <Button
+            android:id="@+id/postCommentBtn"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:text="@string/send"
+            android:textSize="15sp" />
+
+    </LinearLayout>
 
 </LinearLayout>

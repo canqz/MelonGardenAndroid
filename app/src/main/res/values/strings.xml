@@ -6,4 +6,6 @@
     <string name="sign_up">Sign up</string>
     <string name="sign_in">Sign in</string>
     <string name="post">post</string>
+    <string name="post_a_comment">post a comment</string>
+    <string name="send">send</string>
 </resources>
