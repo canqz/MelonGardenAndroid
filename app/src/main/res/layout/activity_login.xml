@@ -31,6 +31,8 @@
             android:textSize="20sp" />
 
         <EditText
+            android:text="admin"
+            android:id="@+id/idText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp" />
@@ -52,6 +54,8 @@
             android:textSize="20sp" />
 
         <EditText
+            android:text="xduxdu"
+            android:id="@+id/passwordText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp" />
@@ -66,6 +70,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/signInBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/sign_in"
@@ -73,6 +78,7 @@
             android:layout_weight="1" />
 
         <Button
+            android:id="@+id/signUpBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"

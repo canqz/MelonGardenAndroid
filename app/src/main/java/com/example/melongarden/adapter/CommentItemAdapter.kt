@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isGone
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.melongarden.R
@@ -32,11 +31,12 @@ class CommentItemAdapter : RecyclerView.Adapter<CommentItemAdapter.ItemHolder>()
         val text = commentBean?.comments?.get(position)?.content ?: ""
         holder.itemView.userId.text = commentBean?.comments?.get(position)?.user_id ?: ""
         holder.itemView.contentTv.apply {
-            if (text == "") {
+            val contentText = Jsoup.parse(text).text()
+            if ( contentText == "") {
                 visibility = View.GONE
             } else {
                 visibility = View.VISIBLE
-                this.text = Jsoup.parse(text).text()
+                this.text = contentText
             }
         }
 
