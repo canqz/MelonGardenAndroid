@@ -1,5 +1,6 @@
 package com.example.melongarden.activity
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,7 +11,6 @@ import com.example.melongarden.R
 import com.example.melongarden.adapter.CommentItemAdapter
 import com.example.melongarden.bean.CommentBean
 import com.example.melongarden.bean.ReplyCommentBean
-import com.example.melongarden.bean.Token
 import com.example.melongarden.service.NetHelper
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.activity_comment.*
 class CommentActivity : AppCompatActivity(), View.OnClickListener {
     private val adapter = CommentItemAdapter()
     private var postId: Int = 0
+    private var sharePreferences: SharedPreferences? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comment)
@@ -29,6 +30,7 @@ class CommentActivity : AppCompatActivity(), View.OnClickListener {
         commentRecycleView.adapter = adapter
         commentRecycleView.layoutManager = LinearLayoutManager(this)
         postCommentBtn.setOnClickListener(this)
+        sharePreferences = this.getSharedPreferences("login", MODE_PRIVATE)
     }
 
     private fun updateData(x: Int) {
@@ -62,7 +64,8 @@ class CommentActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         val text = commentPostText.text.toString()
-        NetHelper.getRequest().postComment(Token.string, text, postId)
+        NetHelper.getRequest()
+            .postComment(sharePreferences?.getString("token", "") ?: "", text, postId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : Observer<ReplyCommentBean> {

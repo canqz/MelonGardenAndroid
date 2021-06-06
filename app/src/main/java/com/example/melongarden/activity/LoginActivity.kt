@@ -1,14 +1,13 @@
 package com.example.melongarden.activity
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.melongarden.R
-import com.example.melongarden.bean.Token
 import com.example.melongarden.bean.TokenBean
 import com.example.melongarden.service.NetHelper
 import io.reactivex.Observer
@@ -18,11 +17,25 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
+    var sharePreference: SharedPreferences? = null
+    var editor: SharedPreferences.Editor? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        sharePreference = this.getSharedPreferences("login", MODE_PRIVATE)
+        checkIsLogin()
         signInBtn.setOnClickListener(this)
         signUpBtn.setOnClickListener(this)
+    }
+
+    private fun checkIsLogin() {
+        if (sharePreference?.getString("token", "") ?: "" == ""){
+            return
+        }else{
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     override fun onClick(v: View) {
@@ -48,8 +61,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 }
 
                 override fun onNext(t: TokenBean) {
-                    Log.i("lwt", t.token)
-                    Token.string = t.token
+                    editor = sharePreference?.edit()
+                    editor?.putString("token", t.token)
+                    editor?.apply()
                 }
 
                 override fun onError(e: Throwable) {
@@ -60,6 +74,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 override fun onComplete() {
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
+                    finish()
                 }
             })
     }
