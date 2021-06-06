@@ -1,10 +1,7 @@
 package com.example.melongarden.service
 
 
-import com.example.melongarden.bean.CommentBean
-import com.example.melongarden.bean.PostBean
-import com.example.melongarden.bean.ReplyCommentBean
-import com.example.melongarden.bean.TokenBean
+import com.example.melongarden.bean.*
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -25,4 +22,11 @@ interface PostService {
         @Query("content") content: String,
         @Query("post_id") postId: Int
     ): Observable<ReplyCommentBean>
+
+    @POST("/api/v1/posts")
+    fun postPosts(
+        @Header("token") token: String,
+        @Query("content") content: String,
+        @Query("title") title: String
+    ): Observable<ReplyPostBean>
 }

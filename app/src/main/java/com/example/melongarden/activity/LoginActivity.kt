@@ -29,9 +29,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun checkIsLogin() {
-        if (sharePreference?.getString("token", "") ?: "" == ""){
+        if (sharePreference?.getString("token", "") ?: "" == "") {
             return
-        }else{
+        } else {
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
@@ -62,6 +62,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
                 override fun onNext(t: TokenBean) {
                     editor = sharePreference?.edit()
+                    Log.i("lwt", t.token)
                     editor?.putString("token", t.token)
                     editor?.apply()
                 }
