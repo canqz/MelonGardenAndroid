@@ -42,12 +42,42 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom"
-        android:hint="@string/post"
-        android:paddingStart="20dp"
-        android:paddingLeft="20dp" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/postTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/title"
+            android:paddingStart="10dp"
+            android:paddingLeft="10dp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:maxLines="3"
+                android:id="@+id/postContentEt"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:hint="@string/content"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp" />
+
+            <Button
+                android:id="@+id/sendPostsBtn"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/send" />
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

@@ -9,4 +9,6 @@
     <string name="post_a_comment">post a comment</string>
     <string name="send">send</string>
     <string name="login_out">login out</string>
+    <string name="content">content</string>
+    <string name="title">title</string>
 </resources>

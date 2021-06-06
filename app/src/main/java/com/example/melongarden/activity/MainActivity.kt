@@ -18,7 +18,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnFocusChangeListener {
     private var dataBean: PostBean? = null
     private val adapter = PostsItemAdapter()
     private var sharePreference: SharedPreferences? = null
@@ -29,6 +29,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
         sharePreference = getSharedPreferences("login", MODE_PRIVATE)
         loginOutBtn.setOnClickListener(this)
+        sendPostsBtn.setOnClickListener(this)
+        postContentEt.setOnFocusChangeListener(this)
         initData()
         initRecycleView()
     }
@@ -74,15 +76,35 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     Log.i("lwt", e.toString())
                 }
             })
+    }
+
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.loginOutBtn -> {
+                editor = sharePreference?.edit()
+                editor?.putString("token", "")
+                editor?.apply()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.sendPostsBtn -> {
+                sendPost()
+            }
+        }
+    }
+
+    private fun sendPost() {
 
     }
 
-    override fun onClick(v: View?) {
-        editor = sharePreference?.edit()
-        editor?.putString("token","")
-        editor?.apply()
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-        finish()
+    override fun onFocusChange(v: View, hasFocus: Boolean) {
+        when(v.id){
+            R.id.postContentEt ->{
+                if(hasFocus){
+                    postTitle.visibility = View.VISIBLE
+                }
+            }
+        }
     }
 }
