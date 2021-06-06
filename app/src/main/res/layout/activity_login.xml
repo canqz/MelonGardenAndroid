@@ -3,17 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+
     android:orientation="vertical"
     tools:context=".activity.LoginActivity">
 
-    <TextView
-        android:text="@string/welcome_to_melongarden"
+    <ImageView
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="100dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:src="@drawable/melongarden"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
 
 
     <LinearLayout
@@ -26,7 +25,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:gravity="center"
+            android:gravity="right"
             android:text="@string/id"
             android:textSize="20sp" />
 
@@ -49,7 +48,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:gravity="center"
+            android:gravity="right"
             android:text="@string/password"
             android:textSize="20sp" />
 
@@ -66,13 +65,13 @@
     <LinearLayout
         android:layout_marginTop="50dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/signInBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/sign_in"
             android:layout_margin="10dp"
             android:layout_weight="1" />
@@ -80,7 +79,7 @@
         <Button
             android:id="@+id/signUpBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:text="@string/sign_up"
             android:layout_weight="1" />
