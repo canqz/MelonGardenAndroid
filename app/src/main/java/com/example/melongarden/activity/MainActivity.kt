@@ -5,12 +5,14 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.melongarden.Helper
 import com.example.melongarden.R
 import com.example.melongarden.adapter.PostsItemAdapter
 import com.example.melongarden.bean.PostBean
+import com.example.melongarden.bean.ReplyPostBean
 import com.example.melongarden.service.NetHelper
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -30,8 +32,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnFocusChan
         sharePreference = getSharedPreferences("login", MODE_PRIVATE)
         loginOutBtn.setOnClickListener(this)
         sendPostsBtn.setOnClickListener(this)
-        postContentEt.setOnFocusChangeListener(this)
-        initData()
+        postContentEt.onFocusChangeListener = this
+        updateData()
         initRecycleView()
     }
 
@@ -54,7 +56,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnFocusChan
         postsRecycleView.layoutManager = LinearLayoutManager(this)
     }
 
-    private fun initData() {
+    private fun updateData() {
 
         val observable = NetHelper.getRequest().getPosts()
 
@@ -90,18 +92,40 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnFocusChan
             }
             R.id.sendPostsBtn -> {
                 sendPost()
+                postTitle.visibility = View.GONE
             }
         }
     }
 
     private fun sendPost() {
+        val token = sharePreference?.getString("token", "") ?: ""
+        val title = postTitle.text.toString()
+        val content = postContentEt.text.toString()
+        NetHelper.getRequest().postPosts(token, content, title)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : Observer<ReplyPostBean> {
+                override fun onSubscribe(d: Disposable) {
+                }
 
+                override fun onNext(t: ReplyPostBean) {
+                }
+
+                override fun onError(e: Throwable) {
+                    Toast.makeText(this@MainActivity, "network error", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onComplete() {
+                    updateData()
+                }
+
+            })
     }
 
     override fun onFocusChange(v: View, hasFocus: Boolean) {
-        when(v.id){
-            R.id.postContentEt ->{
-                if(hasFocus){
+        when (v.id) {
+            R.id.postContentEt -> {
+                if (hasFocus) {
                     postTitle.visibility = View.VISIBLE
                 }
             }
