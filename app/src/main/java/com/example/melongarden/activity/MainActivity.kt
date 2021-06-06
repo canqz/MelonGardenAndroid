@@ -1,6 +1,7 @@
 package com.example.melongarden.activity
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -17,13 +18,17 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
     private var dataBean: PostBean? = null
     private val adapter = PostsItemAdapter()
+    private var sharePreference: SharedPreferences? = null
+    private var editor: SharedPreferences.Editor? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        sharePreference = getSharedPreferences("login", MODE_PRIVATE)
+        loginOutBtn.setOnClickListener(this)
         initData()
         initRecycleView()
     }
@@ -70,5 +75,14 @@ class MainActivity : AppCompatActivity() {
                 }
             })
 
+    }
+
+    override fun onClick(v: View?) {
+        editor = sharePreference?.edit()
+        editor?.putString("token","")
+        editor?.apply()
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
