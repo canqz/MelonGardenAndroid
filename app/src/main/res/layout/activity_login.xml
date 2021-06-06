@@ -48,7 +48,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:gravity="right"
+            android:gravity="end"
             android:text="@string/password"
             android:textSize="20sp" />
 
