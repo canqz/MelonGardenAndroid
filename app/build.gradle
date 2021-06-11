@@ -52,4 +52,5 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'//配合Rxjava 使用
     implementation 'org.jsoup:jsoup:1.10.1'
     implementation 'com.github.bumptech.glide:glide:4.7.1'
+    implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 }

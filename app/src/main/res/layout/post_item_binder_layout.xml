@@ -22,17 +22,15 @@
             android:textColor="@color/black"
             android:textSize="18sp" />
 
-
-        <TextView
-            android:id="@+id/authorName"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:gravity="end"
-            android:maxLines="1"
-            android:textSize="16sp" />
-
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/authorName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#B3B3B3"
+        android:maxLines="1"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/postContent"
@@ -40,6 +38,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:maxLines="3"
-        android:textSize="14sp" />
+        android:textSize="16sp" />
 
 </LinearLayout>

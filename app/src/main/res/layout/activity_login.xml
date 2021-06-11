@@ -8,11 +8,11 @@
     tools:context=".activity.LoginActivity">
 
     <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="100dp"
-        android:src="@drawable/melongarden"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"/>
+        android:src="@drawable/melongarden" />
 
 
     <LinearLayout
@@ -30,10 +30,10 @@
             android:textSize="20sp" />
 
         <EditText
-            android:text="admin"
             android:id="@+id/idText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="admin"
             android:textSize="20sp" />
 
     </LinearLayout>
@@ -53,36 +53,22 @@
             android:textSize="20sp" />
 
         <EditText
-            android:text="xduxdu"
+            android:inputType="textPassword"
             android:id="@+id/passwordText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="xduxdu"
             android:textSize="20sp" />
 
     </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_marginTop="50dp"
+    <Button
+        android:id="@+id/signUpBtn"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:orientation="horizontal">
+        android:layout_height="50dp"
+        android:layout_margin="50dp"
+        android:text="@string/sign_in" />
 
-        <Button
-            android:id="@+id/signInBtn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/sign_in"
-            android:layout_margin="10dp"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/signUpBtn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:text="@string/sign_up"
-            android:layout_weight="1" />
-    </LinearLayout>
 
 </LinearLayout>

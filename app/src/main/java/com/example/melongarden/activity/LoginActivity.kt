@@ -24,7 +24,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_login)
         sharePreference = this.getSharedPreferences("login", MODE_PRIVATE)
         checkIsLogin()
-        signInBtn.setOnClickListener(this)
         signUpBtn.setOnClickListener(this)
     }
 
@@ -41,7 +40,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View) {
         when (v.id) {
             R.id.signUpBtn -> signUp()
-            R.id.signInBtn -> signIn()
         }
     }
 
