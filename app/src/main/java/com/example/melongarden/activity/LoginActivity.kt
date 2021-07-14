@@ -63,6 +63,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     Log.i("lwt", t.token)
                     editor?.putString("token", t.token)
                     editor?.apply()
+
                 }
 
                 override fun onError(e: Throwable) {
